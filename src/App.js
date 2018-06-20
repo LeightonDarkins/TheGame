@@ -130,7 +130,9 @@ class App extends Component {
         if (this.state.phase.name === 'GOING HOME') {
           this.setState({ winner: true })
         } else {
-          if (!this.state.gameOver) { playSound(document.querySelector('.TadaSound')) }
+          if (!this.state.gameOver) {
+            playSound(document.querySelector('.TadaSound'))
+          }
 
           this.changePhases()
         }
@@ -253,12 +255,12 @@ class App extends Component {
       </ul>
     )
   }
-  // <h2>DriverApp - The Game</h2>
 
   render () {
     return (
       <div className='App'>
         <div>
+          <h2>DriverApp - The Game</h2>
           <div className='emojis'>
             <span className='title-emoji' role='img' aria-label='truck emoji'>
               🚚
