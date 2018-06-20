@@ -3,7 +3,7 @@ import './App.css'
 import PHASES from './GamePhases'
 
 const MAX_BATTERY_LEVEL = 100
-const INSTA_DEATH_LIKELIHOOD = 10000
+const INSTA_DEATH_LIKELIHOOD = 30
 
 const DEFAULT_STATE = {
   started: false,

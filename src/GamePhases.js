@@ -18,6 +18,10 @@ module.exports = {
       {
         description: `free donuts at the bakery!`,
         batteryEffect: 10
+      },
+      {
+        description: `your engine is making an unhealthy sound...`,
+        batteryEffect: -5
       }
     ]
   },
@@ -31,7 +35,7 @@ module.exports = {
     events: [
       { description: `you consolidate some SSCCs`, batteryEffect: 5 },
       {
-        description: `you scan instead of tap SSCCs like a good driver`,
+        description: `you scan SSCCs instead of tapping them`,
         batteryEffect: 10
       },
       {
@@ -71,12 +75,20 @@ module.exports = {
     },
     events: [
       {
+        description: `your device just won't connect to the WLAN`,
+        batteryEffect: -20
+      },
+      {
         description: `the empties employee is nowhere to be found`,
         batteryEffect: -10
       },
       {
         description: `you have exactly the right number of transport goods`,
         batteryEffect: 10
+      },
+      {
+        description: `your transport manager gives you a hi-5`,
+        batteryEffect: 20
       }
     ]
   },
