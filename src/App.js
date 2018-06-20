@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import './App.css'
 import PHASES from './GamePhases'
+import tada from './sounds/tada.mp3'
+import instaDeath from './sounds/instaDeath.mp3'
 
 const MAX_BATTERY_LEVEL = 100
 const INSTA_DEATH_LIKELIHOOD = 30
@@ -13,6 +15,11 @@ const DEFAULT_STATE = {
   batteryLevel: MAX_BATTERY_LEVEL,
   gameOver: false,
   winner: false
+}
+
+const playSound = audioElement => {
+  audioElement.currentTime = 0
+  audioElement.play()
 }
 
 class App extends Component {
@@ -41,6 +48,8 @@ class App extends Component {
     )
 
     if (instantDeathNumber === 1) {
+      playSound(document.querySelector('.InstaDeath'))
+
       return {
         description: 'Empties have failed to synchronize! Insta-death!',
         batteryEffect: -100
@@ -121,6 +130,8 @@ class App extends Component {
         if (this.state.phase.name === 'GOING HOME') {
           this.setState({ winner: true })
         } else {
+          if (!this.state.gameOver) { playSound(document.querySelector('.TadaSound')) }
+
           this.changePhases()
         }
       } else {
@@ -129,13 +140,6 @@ class App extends Component {
         const batteryLevelCopy = this.state.batteryLevel
         const newBatteryLevel = batteryLevelCopy + randomEvent.batteryEffect
 
-        // if (newBatteryLevel <= 0) {
-        //   this.setState({
-        //     gameOver: true,
-        //     gameHistory: newArray,
-        //     batteryLevel: 0
-        //   })
-        // } else {
         this.setState({
           stepCount: this.state.stepCount + 1,
           gameHistory: newArray,
@@ -143,7 +147,6 @@ class App extends Component {
             ? newBatteryLevel
             : MAX_BATTERY_LEVEL
         })
-        // }
       }
     }
   }
@@ -256,7 +259,6 @@ class App extends Component {
     return (
       <div className='App'>
         <div>
-          <h2>DriverApp - The Game</h2>
           <div className='emojis'>
             <span className='title-emoji' role='img' aria-label='truck emoji'>
               🚚
@@ -274,6 +276,8 @@ class App extends Component {
         </p>
         {this.renderGameArea()}
         {this.renderInstructionText()}
+        <audio className='TadaSound' src={tada} />
+        <audio className='InstaDeath' src={instaDeath} />
       </div>
     )
   }
